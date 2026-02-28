@@ -1,0 +1,49 @@
+/**
+ * CustomCursor styles
+ * pointer-events: none ensures clicks pass through to underlying elements
+ */
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(var(--offset-x, -26px), var(--offset-y, -8px));
+  transition: transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.18s ease;
+  will-change: transform;
+  opacity: 0;
+}
+
+.custom-cursor.visible {
+  opacity: 1;
+}
+
+/* Hover over clickable elements */
+.custom-cursor.hover {
+  transform: translate(var(--offset-x, -26px), var(--offset-y, -8px)) scale(1.12);
+}
+
+/* Mouse down / click */
+.custom-cursor.active {
+  transform: translate(var(--offset-x, -26px), var(--offset-y, -8px)) scale(0.88);
+}
+
+.custom-cursor.hover.active {
+  transform: translate(var(--offset-x, -26px), var(--offset-y, -8px)) scale(0.96);
+}
+
+.custom-cursor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Hide system cursor when custom cursor is active */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
